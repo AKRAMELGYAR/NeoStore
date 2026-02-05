@@ -48,6 +48,26 @@ export class Order {
     @Prop({ type: String })
     paymentIntent: string
 
+    @Prop({
+        type: [
+            {
+                productId: { type: Types.ObjectId, ref: 'Product', required: true },
+                name: String,
+                mainImage: String,
+                subPrice: Number,
+                quantity: Number,
+            }
+        ],
+        required: true
+    })
+    items: {
+        productId: Types.ObjectId;
+        name: string;
+        mainImage: string;
+        subPrice: number;
+        quantity: number;
+    }[];
+
 }
 
 export const orderSchema = SchemaFactory.createForClass(Order);

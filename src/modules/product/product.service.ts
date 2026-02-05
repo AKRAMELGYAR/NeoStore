@@ -170,7 +170,7 @@ export class ProductService {
         query: ProductFilterDto
     ) {
 
-        const { name, select, sort, page } = query
+        const { name, select, sort, page, category, brand } = query
 
         let filterObject: FilterQuery<ProductDocument> = {}
         if (name) {
@@ -181,13 +181,26 @@ export class ProductService {
                 ]
             }
         }
-        return this.productRepository.find({
+        if (category) {
+            filterObject = {
+                ...filterObject,
+                category: new Types.ObjectId(category)
+            }
+        }
+        if (brand) {
+            filterObject = {
+                ...filterObject,
+                brand: new Types.ObjectId(brand)
+            }
+        }
+        const products = await this.productRepository.find({
             filter: filterObject,
-            populate: [{ path: 'category' }],
+            populate: [{ path: 'category' }, { path: 'brand' }],
             select,
             sort,
             page
         })
+        return products
     }
 
     async askAi(
@@ -195,10 +208,8 @@ export class ProductService {
     ) {
         if (!prompt) return { message: 'Please provide a prompt' };
 
-        // 1️⃣ هات المنتجات كلها (أو حسب احتياجك)
         const products = await this.getAllProducts({});
 
-        // 2️⃣ ابعتهم للموديل مع البرومبت
         const aiResponse = await this.aiService.askWithProducts(prompt, products);
 
         return { prompt, response: aiResponse };
@@ -207,7 +218,7 @@ export class ProductService {
     async getproduct(
         productId: Types.ObjectId,
     ): Promise<object> {
-        const product = await this.productRepository.findOne({ _id: productId })
+        const product = await this.productRepository.findOne({ _id: productId }, [{ path: 'category' }, { path: 'brand' }])
         if (!product) {
             throw new BadRequestException('order not found')
         }

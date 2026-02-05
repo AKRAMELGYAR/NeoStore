@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, HttpCode, Param, Patch, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { BrandService } from './brand.service';
 import { Auth, userDecorator } from 'src/common/decorator';
 import { UserRole } from 'src/common/types/types';
@@ -12,6 +12,12 @@ import { Types } from 'mongoose';
 @Controller('brand')
 export class BrandController {
     constructor(private readonly brandService: BrandService) { }
+
+    @Get()
+    @HttpCode(200)
+    async getAllBrands(): Promise<object> {
+        return await this.brandService.getAllBrands();
+    }
 
     @Post('create')
     @HttpCode(201)

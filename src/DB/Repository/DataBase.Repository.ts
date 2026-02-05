@@ -18,11 +18,10 @@ export abstract class DataBaseRepository<TDocument> {
         if (populate) query.populate(populate)
         if (select) query.select(select.replaceAll(",", " "))
         if (sort) query.sort(sort.replaceAll(",", " "))
-
         if (!page) {
             return await query;
         }
-        const limit = 4
+        const limit: number = 10
         const skip = (page - 1) * limit
         const result = await query.skip(skip).limit(limit)
 

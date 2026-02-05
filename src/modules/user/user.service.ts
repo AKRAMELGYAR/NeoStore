@@ -29,7 +29,8 @@ export class UserService {
             throw new ConflictException('User Not Found Or Not confirmed yet');
         }
 
-        if (!this.hashService.CompareHash(pass, user.pass)) {
+        const validpass = await this.hashService.CompareHash(pass, user.pass);
+        if (!validpass) {
             throw new ConflictException('Invalid email or password');
         }
 

@@ -26,6 +26,13 @@ export class BrandService {
         private readonly brandRepository: BrandRepository
     ) { }
 
+
+    async getAllBrands() {
+        return await this.brandRepository.find({
+            populate: [{ path: 'categoryId' }, { path: 'subCategoryId' }],
+        })
+    }
+
     async createbrand(
         body: createBrandDto,
         user: user,

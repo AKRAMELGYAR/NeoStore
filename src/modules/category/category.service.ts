@@ -21,6 +21,11 @@ export class CategoryService {
         private readonly cloudinaryService: CloudinaryService
     ) { }
 
+    async getAllCategories(): Promise<object> {
+        const categories = await this.categoryRepository.find({});
+        return { categories };
+    }
+
     async createCategory(category: categoryDto, user: user, file: Express.Multer.File): Promise<object> {
 
         const { name } = category

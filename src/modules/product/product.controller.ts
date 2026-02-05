@@ -57,6 +57,7 @@ export class ProductController {
     }
 
     @Get()
+    @HttpCode(200)
     async getAllProducts(
         @Query() query: ProductFilterDto
     ) {

@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Get, HttpCode, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { OrderService } from './order.service';
 import { Auth, userDecorator } from 'src/common/decorator';
 import { UserRole } from 'src/common/types/types';
@@ -10,6 +10,8 @@ import { Types } from 'mongoose';
 export class OrderController {
     constructor(private readonly orderService: OrderService) { }
 
+
+    @HttpCode(201)
     @Post('create')
     @Auth(UserRole.user, UserRole.admin)
     @UsePipes(new ValidationPipe({}))

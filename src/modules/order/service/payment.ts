@@ -1,4 +1,3 @@
-import { waitForDebugger } from "inspector";
 import Stripe from "stripe";
 
 
@@ -21,7 +20,7 @@ export class Payment {
             metadata,
             line_items,
             discounts,
-            success_url: "http://localhost:3000/order/success",
+            success_url: "http://localhost:5173/orders",
             cancel_url: "http://localhost:3000/order/cancel"
 
         })

@@ -96,4 +96,12 @@ export class ProductFilterDto {
     @IsOptional()
     @IsNumber()
     page?: number;
+
+    @IsOptional()
+    @IsMongoId()
+    category?: Types.ObjectId;
+
+    @IsOptional()
+    @IsMongoId()
+    brand?: Types.ObjectId;
 }

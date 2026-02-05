@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Patch, Post, UsePipes, ValidationPipe } f
 import { CartService } from './cart.service';
 import { Auth, userDecorator } from 'src/common/decorator';
 import { UserRole } from 'src/common/types/types';
-import { CartDTO } from './Dto/cartDto';
+import { CartDTO, RemoveCartDTO } from './Dto/cartDto';
 import { user } from 'src/DB/Model';
 import { Types } from 'mongoose';
 
@@ -11,7 +11,7 @@ export class CartController {
     constructor(private readonly cartService: CartService) { }
 
     @Post('add')
-    @Auth(UserRole.user)
+    @Auth(UserRole.user, UserRole.admin)
     @UsePipes(new ValidationPipe({}))
     addToCart(
         @Body() body: CartDTO,
@@ -21,17 +21,17 @@ export class CartController {
     }
 
     @Patch('remove')
-    @Auth(UserRole.user)
+    @Auth(UserRole.user, UserRole.admin)
     @UsePipes(new ValidationPipe({}))
     removeFromCart(
-        @Body() body: CartDTO,
+        @Body() body: RemoveCartDTO,
         @userDecorator() user: user
     ): Promise<object> {
         return this.cartService.removeFromCart(body, user);
     }
 
     @Patch('update')
-    @Auth(UserRole.user)
+    @Auth(UserRole.user, UserRole.admin)
     @UsePipes(new ValidationPipe({}))
     updateCart(
         @Body() body: CartDTO,
@@ -42,12 +42,11 @@ export class CartController {
     }
 
 
-    @Get('/:cartId')
+    @Get('/')
     @Auth(UserRole.admin, UserRole.user)
     async getOrder(
-        @Param('cartId') cartId: Types.ObjectId,
         @userDecorator() user: user
     ) {
-        return this.cartService.getcart(cartId, user)
+        return this.cartService.getcart(user)
     }
 }

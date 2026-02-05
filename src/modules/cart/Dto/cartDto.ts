@@ -14,3 +14,9 @@ export class CartDTO {
     @IsNotEmpty()
     quantity: number;
 }
+
+export class RemoveCartDTO {
+    @IsNotEmpty()
+    @IsString()
+    productId: string;
+}

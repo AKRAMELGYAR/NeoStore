@@ -20,11 +20,22 @@ export class OrderService {
         user: user
     ): Promise<object> {
         const { phone, address, paymentMethod } = body
-        const cart = await this.cartRepository.findOne({ userId: user._id })
+        const cart = await this.cartRepository.findOne({ userId: user._id }, [
+            { path: 'products.productId' }
+        ])
 
         if (!cart || cart.products.length == 0) {
             throw new BadRequestException('Cart is Empty')
         }
+
+        const orderItems = cart.products.map(product => ({
+            productId: product.productId._id,
+            name: product.productId['name'],
+            mainImage: product.productId['mainImage']['secure_url'],
+            subPrice: product.finalPrice,
+            quantity: product.quantity
+        })
+        )
 
         const order = await this.orderRepository.create({
             userId: user._id,
@@ -33,7 +44,8 @@ export class OrderService {
             address,
             paymentMethod,
             status: paymentMethod == PaymentMethodTypes.cash ? OrderStatusTypes.placed : OrderStatusTypes.pending,
-            totalPrice: cart.subTotal
+            totalPrice: cart.subTotal,
+            items: orderItems
         })
 
         for (const item of cart.products) {
@@ -46,18 +58,9 @@ export class OrderService {
             );
         }
 
-        await this.cartRepository.findOneAndUpdate(
-            { userId: user._id },
-            {
-                $set: {
-                    products: [],
-                    subTotal: 0
-                }
-            }
-        );
 
         return {
-            messade: "Order Created Successfully",
+            message: "Order Created Successfully",
             order
         }
     }
@@ -87,7 +90,7 @@ export class OrderService {
                     currency: "egp",
                     product_data: {
                         name: product.productId.name,
-                        images: [product.productId.mainImage.success_url]
+                        images: [product.productId.mainImage.secure_url]
                     },
                     unit_amount: product.productId.subPrice * 100
                 },
@@ -114,6 +117,16 @@ export class OrderService {
                 paymentIntent: data.data.object.payment_intent
             }
         )
+        console.log(order.cartId)
+        await this.cartRepository.findOneAndUpdate(
+            { _id: order.cartId },
+            {
+                $set: {
+                    products: [],
+                    subTotal: 0
+                }
+            }
+        );
 
         return { order }
     }

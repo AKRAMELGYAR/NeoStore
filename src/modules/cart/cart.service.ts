@@ -1,6 +1,6 @@
 import { BadGatewayException, BadRequestException, Injectable } from '@nestjs/common';
 import { CartRepository, productRepository } from 'src/DB/Repository';
-import { CartDTO } from './Dto/cartDto';
+import { CartDTO, RemoveCartDTO } from './Dto/cartDto';
 import { user } from 'src/DB/Model';
 import { Types } from 'mongoose';
 
@@ -34,7 +34,9 @@ export class CartService {
 
         let productInCart = cart.products.find(item => item.productId.toString() === productId.toString());
         if (productInCart) {
-            throw new Error('Product already in cart');
+            // throw new BadRequestException('Product already in cart');
+            productInCart.quantity += quantity;
+            return await cart.save();
         }
 
         cart.products.push({
@@ -48,13 +50,11 @@ export class CartService {
 
     async updateCart(body: CartDTO, user: user) {
         const { productId, quantity } = body
-
-        const cart = await this.cartRepository.findOne({ userId: user._id })
+        const cart = await this.cartRepository.findOne({ userId: user._id }, [{ path: 'products.productId' }])
         if (!cart) {
             throw new BadGatewayException('Cart not found')
         }
-
-        const productInCart = cart.products.find(item => item.productId.toString() === productId.toString())
+        const productInCart = cart.products.find(item => item.productId._id.toString() === productId.toString())
         if (!productInCart) {
             throw new BadGatewayException('Product not found in cart')
         }
@@ -65,31 +65,31 @@ export class CartService {
         }
 
         productInCart.quantity = quantity
-        return await cart.save()
+        await cart.save()
+        return cart
     }
 
-    async removeFromCart(body: CartDTO, user: any) {
+    async removeFromCart(body: RemoveCartDTO, user: any) {
 
         const { productId } = body
         const product = await this.productRepository.findOne({ _id: productId })
         if (!product) {
             throw new Error("Product not found")
         }
-        const cart = await this.cartRepository.findOne({ userId: user._id, 'products.productId': productId })
+        const cart = await this.cartRepository.findOne({ userId: user._id, 'products.productId': productId }, [{ path: 'products.productId' }])
         if (!cart) {
             throw new Error('cart or product not found')
         }
 
-        cart.products = cart.products.filter(item => item.productId.toString() !== productId.toString())
+        cart.products = cart.products.filter(item => item.productId._id.toString() !== productId.toString())
         return await cart.save();
 
     }
 
     async getcart(
-        cartId: Types.ObjectId,
         user: user
     ): Promise<object> {
-        const cart = await this.cartRepository.findOne({ _id: cartId, userId: user._id })
+        const cart = await this.cartRepository.findOne({ userId: user._id }, [{ path: 'products.productId' }])
         if (!cart) {
             throw new BadRequestException('cart not found or you are not authurized')
         }

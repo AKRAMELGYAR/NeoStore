@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Param, Patch, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { categoryDto } from './Dto/category.dto';
 import { UserRole } from 'src/common/types/types';
@@ -42,6 +42,11 @@ export class CategoryController {
     @Delete('delete/:id')
     async deleteCategory(@Param('id') id: Types.ObjectId) {
         return this.categoryService.deleteCategory(id)
+    }
+
+    @Get()
+    async getAllCategories() {
+        return this.categoryService.getAllCategories();
     }
 
 
