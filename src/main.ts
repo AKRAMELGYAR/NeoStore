@@ -25,16 +25,16 @@ import cors from 'cors';
 
 const server = express();
 
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
 
-server.use(
-  cors({
-    origin: [
-      'http://localhost:5173',
-    ],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  }),
-);
+server.use(cors(corsOptions));
+
+server.options('*', cors(corsOptions));
 
 export async function createApp() {
   const app = await NestFactory.create(
@@ -49,4 +49,5 @@ export async function createApp() {
   await app.init();
   return server;
 }
+
 
