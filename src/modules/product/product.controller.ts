@@ -1,12 +1,12 @@
 import { Body, Controller, Get, HttpCode, Param, Patch, Post, Query, UploadedFiles, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { ProductService } from './product.service';
-import { Auth, userDecorator } from "..\../common/decorator";
-import { UserRole } from "..\../common/types/types";
+import { Auth, userDecorator } from "../../common/decorator";
+import { UserRole } from "../../common/types/types";
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
-import { multerCloudinary } from "..\../common/services";
-import { ImageAllowedExt } from "..\../common/constants/constants";
+import { multerCloudinary } from "../../common/services";
+import { ImageAllowedExt } from "../../common/constants/constants";
 import { createProductDto, ProductFilterDto, updateProductDto } from './Dto/productDto';
-import { user } from "..\../DB/Model";
+import { user } from "../../DB/Model";
 import { Types } from 'mongoose';
 
 @Controller('product')

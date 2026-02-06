@@ -1,7 +1,7 @@
 import { Transform } from 'class-transformer';
 import { IsDate, IsEmail, IsEnum, IsNotEmpty, IsString, Matches, MaxLength, MinLength } from 'class-validator';
-import { CustomPassDecorator } from "..\..\../common/decorator/confirmPassword.Decorator";
-import { UserGender } from "..\..\../common/types/types";
+import { CustomPassDecorator } from "../../../common/decorator/confirmPassword.Decorator";
+import { UserGender } from "../../../common/types/types";
 
 
 export class UserDto {

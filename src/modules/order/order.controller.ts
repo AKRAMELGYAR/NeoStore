@@ -1,9 +1,9 @@
 import { Body, Controller, Get, HttpCode, Param, Post, Put, UsePipes, ValidationPipe } from '@nestjs/common';
 import { OrderService } from './order.service';
-import { Auth, userDecorator } from "..\../common/decorator";
-import { UserRole } from "..\../common/types/types";
+import { Auth, userDecorator } from "../../common/decorator";
+import { UserRole } from "../../common/types/types";
 import { createOrderDto } from './Dto/orderDto';
-import { user } from "..\../DB/Model";
+import { user } from "../../DB/Model";
 import { Types } from 'mongoose';
 
 @Controller('order')

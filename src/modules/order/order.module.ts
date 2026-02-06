@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { OrderController } from './order.controller';
 import { OrderService } from './order.service';
-import { cartModel, orderModel, ProductModel } from "..\../DB/Model";
-import { CartRepository, orderRepository, productRepository } from "..\../DB/Repository";
+import { cartModel, orderModel, ProductModel } from "../../DB/Model";
+import { CartRepository, orderRepository, productRepository } from "../../DB/Repository";
 import { Payment } from './service/payment';
 
 @Module({

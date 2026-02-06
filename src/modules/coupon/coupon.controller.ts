@@ -1,9 +1,9 @@
 import { Body, Controller, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CouponService } from './coupon.service';
-import { Auth, userDecorator } from "..\../common/decorator";
-import { UserRole } from "..\../common/types/types";
+import { Auth, userDecorator } from "../../common/decorator";
+import { UserRole } from "../../common/types/types";
 import { createCoupon } from './Dto/couponDto';
-import { user } from "..\../DB/Model";
+import { user } from "../../DB/Model";
 
 @Controller('coupon')
 export class CouponController {

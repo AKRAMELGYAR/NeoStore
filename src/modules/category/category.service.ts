@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { categoryRepositoryService } from "..\../DB/Repository";
+import { categoryRepositoryService } from "../../DB/Repository";
 import { categoryDto, updateCategory } from './Dto/category.dto';
-import { user } from "..\../DB/Model";
-import { CloudinaryService } from "..\../common/services";
+import { user } from "../../DB/Model";
+import { CloudinaryService } from "../../common/services";
 import { Types } from 'mongoose';
 import slugify from 'slugify';
 

@@ -1,10 +1,9 @@
 import { Body, Controller, Get, Param, Patch, Post, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CartService } from './cart.service';
-import { Auth, userDecorator } from "..\../common/decorator";
-import { UserRole } from "..\../common/types/types";
+import { Auth, userDecorator } from "../../common/decorator";
+import { UserRole } from "../../common/types/types";
 import { CartDTO, RemoveCartDTO } from './Dto/cartDto';
-import { user } from "..\../DB/Model";
-import { Types } from 'mongoose';
+import { user } from "../../DB/Model";
 
 @Controller('cart')
 export class CartController {

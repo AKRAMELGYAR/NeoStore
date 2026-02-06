@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { BrandService } from './brand.service';
-import { Auth, userDecorator } from "..\../common/decorator";
-import { UserRole } from "..\../common/types/types";
+import { Auth, userDecorator } from "../../common/decorator";
+import { UserRole } from "../../common/types/types";
 import { FileInterceptor } from '@nestjs/platform-express';
-import { multerCloudinary } from "..\../common/services";
-import { ImageAllowedExt } from "..\../common/constants/constants";
+import { multerCloudinary } from "../../common/services";
+import { ImageAllowedExt } from "../../common/constants/constants";
 import { createBrandDto, updateBrandDto } from './Dto/brandDto';
-import { user } from "..\../DB/Model";
+import { user } from "../../DB/Model";
 import { Types } from 'mongoose';
 
 @Controller('brand')

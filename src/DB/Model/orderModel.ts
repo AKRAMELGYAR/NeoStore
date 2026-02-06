@@ -1,7 +1,7 @@
 import { MongooseModule, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 import { User, Cart } from './index'
-import { OrderStatusTypes, PaymentMethodTypes } from "..\../common/types/types";
+import { OrderStatusTypes, PaymentMethodTypes } from "../../common/types/types";
 
 
 

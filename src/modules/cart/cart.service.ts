@@ -1,7 +1,7 @@
 import { BadGatewayException, BadRequestException, Injectable } from '@nestjs/common';
-import { CartRepository, productRepository } from "..\../DB/Repository";
+import { CartRepository, productRepository } from "../../DB/Repository";
 import { CartDTO, RemoveCartDTO } from './Dto/cartDto';
-import { user } from "..\../DB/Model";
+import { user } from "../../DB/Model";
 import { Types } from 'mongoose';
 
 @Injectable()
