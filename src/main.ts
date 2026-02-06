@@ -26,7 +26,7 @@ import cors from 'cors';
 const server = express();
 
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: 'https://AKRAMELGYAR.github.io/NeoStore-FrontEnd/',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
