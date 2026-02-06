@@ -20,8 +20,8 @@ export class Payment {
             metadata,
             line_items,
             discounts,
-            success_url: "http://localhost:5173/orders",
-            cancel_url: "http://localhost:3000/order/cancel"
+            success_url: "https://AKRAMELGYAR.github.io/NeoStore-FrontEnd/orders",
+            cancel_url: "https://AKRAMELGYAR.github.io/NeoStore-FrontEnd/order/cancel"
 
         })
     }
