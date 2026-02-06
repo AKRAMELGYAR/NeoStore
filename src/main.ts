@@ -21,15 +21,27 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import express from 'express';
+import cors from 'cors';
 
 const server = express();
+
+
+server.use(
+  cors({
+    origin: [
+      'http://localhost:5173',
+    ],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  }),
+);
 
 export async function createApp() {
   const app = await NestFactory.create(
     AppModule,
     new ExpressAdapter(server),
     {
-      cors: true,
+      cors: false,
       rawBody: true,
     },
   );
@@ -37,3 +49,4 @@ export async function createApp() {
   await app.init();
   return server;
 }
+
