@@ -17,6 +17,7 @@
 ////////////////////////////////////////
 //support vercel deployment by converting it to serverless
 
+// main.ts
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
@@ -26,7 +27,7 @@ import cors from 'cors';
 const server = express();
 
 const corsOptions = {
-  origin: 'https://AKRAMELGYAR.github.io/NeoStore-FrontEnd/',
+  origin: 'https://akramelgyar.github.io',
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -49,5 +50,4 @@ export async function createApp() {
   await app.init();
   return server;
 }
-
 
