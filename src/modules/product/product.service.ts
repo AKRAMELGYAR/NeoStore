@@ -1,11 +1,11 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { BrandRepository, categoryRepositoryService, productRepository, SubCategoryRepository } from 'src/DB/Repository';
+import { BrandRepository, categoryRepositoryService, productRepository, SubCategoryRepository } from "..\../DB/Repository";
 import { createProductDto, ProductFilterDto, updateProductDto } from './Dto/productDto';
-import { ProductDocument, user } from 'src/DB/Model';
+import { ProductDocument, user } from "..\../DB/Model";
 import { FilterQuery, Types } from 'mongoose';
-import { _productData } from 'src/common/types/types';
-import { CloudinaryService } from 'src/common/services';
-import { AiService } from 'src/common/services/ai.service';
+import { _productData } from "..\../common/types/types";
+import { CloudinaryService } from "..\../common/services";
+import { AiService } from "..\../common/services/ai.service";
 
 
 

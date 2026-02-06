@@ -2,7 +2,7 @@ import { MongooseModule, Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument, Types } from 'mongoose';
 import slugify from 'slugify';
 import { Brand, Category, SubCategory, User } from './index';
-// import { UploadedImage } from 'src/modules/category/category.service';
+// import { UploadedImage } from "..\../modules/category/category.service";
 
 @Schema({
     timestamps: true,

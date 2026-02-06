@@ -1,10 +1,10 @@
 import { Body, Controller, Get, HttpCode, Post, Req, SetMetadata, UseGuards, UsePipes, ValidationPipe } from "@nestjs/common";
 import { UserService } from "./user.service";
 import { ConfirmDto, loginDto, UserDto } from "./dto/user.dto";
-import { UserRole } from "src/common/types/types";
-import { userDecorator } from "src/common/decorator/user.decorator";
-import { user } from "src/DB/Model";
-import { Auth } from "src/common/decorator/auth.decorator";
+import { UserRole } from "../../common/types/types";
+import { userDecorator } from "../../common/decorator/user.decorator";
+import { user } from "../../DB/Model";
+import { Auth } from "../../common/decorator/auth.decorator";
 
 
 @Controller('users')

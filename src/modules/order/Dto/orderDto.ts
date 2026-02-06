@@ -1,5 +1,5 @@
 import { IsEnum, IsNotEmpty, IsString } from "class-validator"
-import { PaymentMethodTypes } from "src/common/types/types"
+import { PaymentMethodTypes } from "../../../common/types/types"
 
 
 export class createOrderDto {

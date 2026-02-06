@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { SubCategoryController } from './sub-category.controller';
 import { SubCategoryService } from './sub-category.service';
-import { CategoryModel, SubCategoryModel } from 'src/DB/Model';
-import { categoryRepositoryService, SubCategoryRepository } from 'src/DB/Repository';
+import { CategoryModel, SubCategoryModel } from "..\../DB/Model";
+import { categoryRepositoryService, SubCategoryRepository } from "..\../DB/Repository";
 
 
 @Module({

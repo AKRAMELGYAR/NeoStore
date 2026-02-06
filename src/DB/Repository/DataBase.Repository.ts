@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { FilterQuery, Model, PopulateOptions, UpdateQuery } from "mongoose";
-import { FindOptions } from "src/common/types/types";
+import { FindOptions } from "../../common/types/types";
 
 
 

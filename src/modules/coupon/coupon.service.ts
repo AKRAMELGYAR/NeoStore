@@ -1,6 +1,6 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { user } from 'src/DB/Model';
-import { couponRepository } from 'src/DB/Repository';
+import { user } from "..\../DB/Model";
+import { couponRepository } from "..\../DB/Repository";
 import { createCoupon } from './Dto/couponDto';
 
 @Injectable()

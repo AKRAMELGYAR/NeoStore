@@ -1,9 +1,9 @@
 import { BadRequestException, ConflictException, Injectable, NotFoundException, Req } from "@nestjs/common";
 import { ConfirmDto, loginDto, UserDto } from "./dto/user.dto";
-import { TokenService } from "src/common/services/token";
-import { HashingService } from "src/common/security/HashingService/Hash";
-import { sendEmail } from "src/common/utils/sendEmail";
-import { UserRepositoryService } from "src/DB/Repository/index";
+import { TokenService } from "../../common/services/token";
+import { HashingService } from "../../common/security/HashingService/Hash";
+import { sendEmail } from "../../common/utils/sendEmail";
+import { UserRepositoryService } from "../../DB/Repository/index";
 
 
 

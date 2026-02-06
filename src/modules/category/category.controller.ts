@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { categoryDto } from './Dto/category.dto';
-import { UserRole } from 'src/common/types/types';
-import { user } from 'src/DB/Model';
-import { userDecorator, Auth } from 'src/common/decorator';
+import { UserRole } from "..\../common/types/types";
+import { user } from "..\../DB/Model";
+import { userDecorator, Auth } from "..\../common/decorator";
 import { FileInterceptor } from '@nestjs/platform-express';
-import { multerCloudinary } from 'src/common/services/multer';
-import { ImageAllowedExt } from 'src/common/constants/constants';
+import { multerCloudinary } from "..\../common/services/multer";
+import { ImageAllowedExt } from "..\../common/constants/constants";
 import { Types } from 'mongoose';
 
 @Controller('category')

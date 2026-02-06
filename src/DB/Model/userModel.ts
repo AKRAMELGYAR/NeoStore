@@ -1,8 +1,8 @@
 import { MongooseModule, Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import { HydratedDocument } from "mongoose";
-import { EncryptionServices } from "src/common/security/EncryptionService/encryption";
-import { HashingService } from "src/common/security/HashingService/Hash";
-import { UserRole, UserGender } from 'src/common/types/types'
+import { EncryptionServices } from "../../common/security/EncryptionService/encryption";
+import { HashingService } from "../../common/security/HashingService/Hash";
+import { UserRole, UserGender } from '../../common/types/types'
 
 
 @Schema({

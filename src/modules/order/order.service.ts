@@ -1,8 +1,8 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
-import { CartRepository, orderRepository, productRepository } from 'src/DB/Repository';
+import { CartRepository, orderRepository, productRepository } from "..\../DB/Repository";
 import { createOrderDto } from './Dto/orderDto';
-import { user } from 'src/DB/Model';
-import { OrderStatusTypes, PaymentMethodTypes } from 'src/common/types/types';
+import { user } from "..\../DB/Model";
+import { OrderStatusTypes, PaymentMethodTypes } from "..\../common/types/types";
 import { Types } from 'mongoose';
 import { Payment } from './service/payment';
 

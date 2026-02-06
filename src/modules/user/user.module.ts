@@ -1,11 +1,11 @@
 import { Module } from "@nestjs/common";
 import { UserController } from "./user.controller";
 import { UserService } from "./user.service";
-import { UserRepositoryService } from "src/DB/Repository";
+import { UserRepositoryService } from "../../DB/Repository";
 import { JwtService } from "@nestjs/jwt";
-import { TokenService } from "src/common/services/token";
-import { HashingService } from "src/common/security/HashingService/Hash";
-import { UserModel } from "src/DB/Model/index";
+import { TokenService } from "../../common/services/token";
+import { HashingService } from "../../common/security/HashingService/Hash";
+import { UserModel } from "../../DB/Model/index";
 
 
 @Module({

@@ -1,12 +1,12 @@
 import { Body, Controller, Delete, HttpCode, Param, Patch, Post, UploadedFile, UseInterceptors, UsePipes, ValidationPipe } from '@nestjs/common';
 import { SubCategoryService } from './sub-category.service';
-import { Auth, userDecorator } from 'src/common/decorator';
+import { Auth, userDecorator } from "..\../common/decorator";
 import { FileInterceptor } from '@nestjs/platform-express';
-import { multerCloudinary } from 'src/common/services';
-import { ImageAllowedExt } from 'src/common/constants/constants';
+import { multerCloudinary } from "..\../common/services";
+import { ImageAllowedExt } from "..\../common/constants/constants";
 import { createSubCategoryDto, updateSubCategoryDto } from './Dto/subCategoryDto';
-import { user } from 'src/DB/Model';
-import { UserRole } from 'src/common/types/types';
+import { user } from "..\../DB/Model";
+import { UserRole } from "..\../common/types/types";
 import { Types } from 'mongoose';
 
 @Controller('sub-category')
